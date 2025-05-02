@@ -5,5 +5,7 @@
     <rule ref="vendor/adnanmula/coding-standard/src/ruleset.xml">
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix" />
         <exclude name="SlevomatCodingStandard.TypeHints.UnionTypeHintFormat" />
+        <exclude name="SlevomatCodingStandard.Classes.ForbiddenPublicProperty" />
+        <exclude name="PSR2.Classes.PropertyDeclaration.ScopeMissing" />
     </rule>
 </ruleset>
