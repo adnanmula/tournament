@@ -15,7 +15,7 @@ class Fixture implements JsonSerializable
         private(set) ?\DateTimeImmutable $playedAt,
     ) {}
 
-    public function updatedPlayedAt(?\DateTimeImmutable $playedAt): self
+    public function updatePlayedAt(?\DateTimeImmutable $playedAt): self
     {
         $this->playedAt = $playedAt;
 
@@ -29,8 +29,8 @@ class Fixture implements JsonSerializable
             'players' => $this->players,
             'type' => $this->type->value,
             'position' => $this->position,
-            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
-            'playedAt' => $this->playedAt?->format('Y-m-d H:i:s'),
+            'createdAt' => $this->createdAt->format('Y-m-d'),
+            'playedAt' => $this->playedAt?->format('Y-m-d'),
         ];
     }
 }

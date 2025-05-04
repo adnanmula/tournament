@@ -60,6 +60,13 @@ class Tournament implements JsonSerializable
         return $this;
     }
 
+    public function updateFixtures(Fixtures $fixtures): self
+    {
+        $this->fixtures = $fixtures;
+
+        return $this;
+    }
+
     public function jsonSerialize(): array
     {
         return [

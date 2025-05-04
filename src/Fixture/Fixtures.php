@@ -23,6 +23,13 @@ class Fixtures implements JsonSerializable
         return $this;
     }
 
+    public function empty(): self
+    {
+        $this->fixtures = [];
+
+        return $this;
+    }
+
     public function jsonSerialize(): array
     {
         return [
