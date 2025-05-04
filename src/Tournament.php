@@ -2,6 +2,7 @@
 
 namespace AdnanMula\Tournament;
 
+use AdnanMula\Tournament\Classification\Classification;
 use AdnanMula\Tournament\Fixture\Fixtures;
 use JsonSerializable;
 
@@ -19,6 +20,45 @@ class Tournament implements JsonSerializable
         private(set) Fixtures $fixtures,
         private(set) Classification $classification,
     ) {}
+
+    public function updateAdmins(string|int ...$admins): static
+    {
+        $this->admins = $admins;
+
+        return $this;
+    }
+
+    public function updatePlayers(string|int ...$players): static
+    {
+        $this->players = $players;
+
+        return $this;
+    }
+
+    public function updateCreatedAt(?\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function updateStartedAt(?\DateTimeImmutable $startedAt): static
+    {
+        $this->startedAt = $startedAt;
+
+        return $this;
+    }
+
+    public function updateFinishedAt(?\DateTimeImmutable $finishedAt): static
+    {
+        $this->finishedAt = $finishedAt;
+
+        if (null !== $this->finishedAt) {
+            $this->classification->updateIsFinished(true);
+        }
+
+        return $this;
+    }
 
     public function jsonSerialize(): array
     {

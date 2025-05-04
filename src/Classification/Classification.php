@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace AdnanMula\Tournament;
+namespace AdnanMula\Tournament\Classification;
 
 use JsonSerializable;
 
@@ -62,15 +62,15 @@ class Classification implements JsonSerializable
 
         \usort($players, static function (Player $a, Player $b) {
             if ($b->wins === $a->wins && $a->losses === $b->losses) {
-                $aDiff = $a->pointsPossitive - $a->pointsNegative;
-                $bDiff = $b->pointsPossitive - $b->pointsNegative;
+                $aDiff = $a->pointsPositive - $a->pointsNegative;
+                $bDiff = $b->pointsPositive - $b->pointsNegative;
 
                 if ($aDiff === $bDiff) {
-                    if ($a->pointsPossitive === $b->pointsPossitive) {
+                    if ($a->pointsPositive === $b->pointsPositive) {
                         return $a->pointsNegative <=> $b->pointsNegative;
                     }
 
-                    return $b->pointsPossitive <=> $a->pointsPossitive;
+                    return $b->pointsPositive <=> $a->pointsPositive;
                 }
 
                 return $bDiff <=> $aDiff;
