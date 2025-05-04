@@ -2,7 +2,9 @@
 
 namespace AdnanMula\Tournament\Classification;
 
-class Player
+use JsonSerializable;
+
+class Player implements JsonSerializable
 {
     public function __construct(
         private(set) int $position,
@@ -104,5 +106,19 @@ class Player
         $this->pointsNegative = $value;
 
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'position' => $this->position,
+            'user' => $this->user->jsonSerialize(),
+            'wins' => $this->wins,
+            'losses' => $this->losses,
+            'gameWins' => $this->gameWins,
+            'gameLosses' => $this->gameLosses,
+            'pointsPositive' => $this->pointsPositive,
+            'pointsNegative' => $this->pointsNegative,
+        ];
     }
 }

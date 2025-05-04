@@ -9,8 +9,8 @@ class Fixtures implements JsonSerializable
     private(set) array $fixtures;
 
     public function __construct(
-        private(set) readonly FixtureType $type,
-        private(set) readonly string $reference,
+        private(set) FixtureType $type,
+        private(set) string $reference,
         Fixture ...$fixtures,
     ) {
         $this->fixtures = $fixtures;
@@ -26,6 +26,20 @@ class Fixtures implements JsonSerializable
     public function empty(): self
     {
         $this->fixtures = [];
+
+        return $this;
+    }
+
+    public function updateType(FixtureType $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function updateReference(string $reference): self
+    {
+        $this->reference = $reference;
 
         return $this;
     }

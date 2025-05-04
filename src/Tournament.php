@@ -14,10 +14,10 @@ class Tournament implements JsonSerializable
         private(set) TournamentType $type,
         private(set) array $admins,
         private(set) array $players,
-        private(set) ?\DateTimeImmutable $createdAt,
+        private(set) \DateTimeImmutable $createdAt,
         private(set) ?\DateTimeImmutable $startedAt,
         private(set) ?\DateTimeImmutable $finishedAt,
-        private(set) ?Fixtures $fixtures,
+        private(set) Fixtures $fixtures,
         private(set) Classification $classification,
     ) {}
 
@@ -35,7 +35,7 @@ class Tournament implements JsonSerializable
         return $this;
     }
 
-    public function updateCreatedAt(?\DateTimeImmutable $createdAt): static
+    public function updateCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -60,13 +60,6 @@ class Tournament implements JsonSerializable
         return $this;
     }
 
-    public function updateFixtures(Fixtures $fixtures): self
-    {
-        $this->fixtures = $fixtures;
-
-        return $this;
-    }
-
     public function jsonSerialize(): array
     {
         return [
@@ -75,10 +68,10 @@ class Tournament implements JsonSerializable
             'type' => $this->type->name,
             'admins' => $this->admins,
             'players' => $this->players,
-            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
-            'startedAt' => $this->startedAt?->format('Y-m-d H:i:s'),
-            'finishedAt' => $this->finishedAt?->format('Y-m-d H:i:s'),
-            'fixtures' => $this->fixtures?->jsonSerialize(),
+            'createdAt' => $this->createdAt->format('Y-m-d'),
+            'startedAt' => $this->startedAt?->format('Y-m-d'),
+            'finishedAt' => $this->finishedAt?->format('Y-m-d'),
+            'fixtures' => $this->fixtures->jsonSerialize(),
             'classification' => $this->classification->jsonSerialize(),
         ];
     }
