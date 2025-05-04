@@ -84,7 +84,7 @@ class Classification implements JsonSerializable
         });
 
         foreach ($players as $index => $player) {
-            $player->setPosition($index + 1);
+            $player->updatePosition($index + 1);
         }
 
         $this->players = $players;
