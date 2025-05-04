@@ -8,7 +8,7 @@ class Fixture implements JsonSerializable
 {
     public function __construct(
         private(set) readonly string $reference,
-        private(set) readonly array $users,
+        private(set) readonly array $players,
         private(set) readonly FixtureType $type,
         private(set) readonly int $position,
         private(set) readonly \DateTimeImmutable $createdAt,
@@ -26,7 +26,7 @@ class Fixture implements JsonSerializable
     {
         return [
             'reference' => $this->reference,
-            'users' => $this->users,
+            'players' => $this->players,
             'type' => $this->type->value,
             'position' => $this->position,
             'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),

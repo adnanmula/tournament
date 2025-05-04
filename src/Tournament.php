@@ -17,7 +17,7 @@ class Tournament implements JsonSerializable
         private(set) ?\DateTimeImmutable $createdAt,
         private(set) ?\DateTimeImmutable $startedAt,
         private(set) ?\DateTimeImmutable $finishedAt,
-        private(set) Fixtures $fixtures,
+        private(set) ?Fixtures $fixtures,
         private(set) Classification $classification,
     ) {}
 
@@ -69,9 +69,9 @@ class Tournament implements JsonSerializable
             'admins' => $this->admins,
             'players' => $this->players,
             'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
-            'startedAt' => $this->startedAt->format('Y-m-d H:i:s'),
-            'finishedAt' => $this->finishedAt->format('Y-m-d H:i:s'),
-            'fixtures' => $this->fixtures->jsonSerialize(),
+            'startedAt' => $this->startedAt?->format('Y-m-d H:i:s'),
+            'finishedAt' => $this->finishedAt?->format('Y-m-d H:i:s'),
+            'fixtures' => $this->fixtures?->jsonSerialize(),
             'classification' => $this->classification->jsonSerialize(),
         ];
     }
