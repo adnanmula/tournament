@@ -39,4 +39,36 @@ class FixtureGeneratorTest extends TestCase
         self::assertEquals('Round 1', $fixtures->fixtures[0]->reference);
         self::assertEquals('Round 2', $fixtures->fixtures[1]->reference);
     }
+
+    public function testGroupedByReference(): void
+    {
+        $generator = new FixturesGenerator();
+
+        $tournament = new Tournament(
+            'Test 1',
+            '',
+            TournamentType::ROUND_ROBIN_2,
+            [1],
+            [1, 2, 3, 4],
+            new \DateTimeImmutable(),
+            new \DateTimeImmutable(),
+            null,
+            new Fixtures(FixtureType::BEST_OF_1, 'Round'),
+            new Classification(false),
+        );
+
+        $generator->execute($tournament);
+        $groupedFixtures = $tournament->fixtures->groupedByReference();
+
+        self::assertEquals(
+            ['Round 1', 'Round 2', 'Round 3', 'Round 4', 'Round 5', 'Round 6'],
+            array_keys($groupedFixtures),
+        );
+
+        foreach ($groupedFixtures as $round => $fixtures) {
+            foreach ($fixtures as $fixture) {
+                self::assertEquals($round, $fixture->reference);
+            }
+        }
+    }
 }

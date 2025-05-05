@@ -9,12 +9,12 @@ class Player implements JsonSerializable
     public function __construct(
         private(set) int $position,
         private(set) readonly User $user,
-        private(set) int $wins,
-        private(set) int $losses,
-        private(set) int $gameWins,
-        private(set) int $gameLosses,
-        private(set) int $pointsPositive,
-        private(set) int $pointsNegative,
+        private(set) int $wins = 0,
+        private(set) int $losses = 0,
+        private(set) int $gameWins = 0,
+        private(set) int $gameLosses = 0,
+        private(set) int $pointsPositive = 0,
+        private(set) int $pointsNegative = 0,
     ) {}
 
     public function updatePosition(int $position): self

@@ -16,6 +16,18 @@ class Fixtures implements JsonSerializable
         $this->fixtures = $fixtures;
     }
 
+    /** @return array<string, array<Fixture>> */
+    public function groupedByReference(): array
+    {
+        $grouped = [];
+
+        foreach ($this->fixtures as $fixture) {
+            $grouped[$fixture->reference][] = $fixture;
+        }
+
+        return $grouped;
+    }
+
     public function add(Fixture ...$fixtures): self
     {
         array_push($this->fixtures, ...$fixtures);
