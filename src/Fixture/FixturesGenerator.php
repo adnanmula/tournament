@@ -99,11 +99,12 @@ final class FixturesGenerator
         $secondHalfFixtures = [];
         $count = 0;
 
+        /** @var Fixture $fixture */
         foreach ($fixtures as $fixture) {
             $secondHalfFixtures[] = new Fixture(
                 $tournament->fixtures->reference . ' ' . $reference,
-                \array_reverse($fixture->users()),
-                $fixture->type(),
+                \array_reverse($fixture->players),
+                $fixture->type,
                 $position,
                 new \DateTimeImmutable(),
                 null,

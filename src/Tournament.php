@@ -23,14 +23,14 @@ class Tournament implements JsonSerializable
 
     public function updateAdmins(string|int ...$admins): static
     {
-        $this->admins = $admins;
+        $this->admins = array_values(array_unique($admins));
 
         return $this;
     }
 
     public function updatePlayers(string|int ...$players): static
     {
-        $this->players = $players;
+        $this->players = array_values(array_unique($players));
 
         return $this;
     }
