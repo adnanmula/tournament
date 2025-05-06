@@ -2,6 +2,7 @@
 
 namespace AdnanMula\Tournament\Classification;
 
+use AdnanMula\Tournament\User;
 use JsonSerializable;
 
 class Player implements JsonSerializable

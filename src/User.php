@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace AdnanMula\Tournament\Classification;
+namespace AdnanMula\Tournament;
 
 use JsonSerializable;
 
@@ -10,6 +10,11 @@ class User implements JsonSerializable
         private(set) string|int $id,
         private(set) string $name,
     ) {}
+
+    public function __toString(): string
+    {
+        return (string) $this->id;
+    }
 
     public function jsonSerialize(): array
     {

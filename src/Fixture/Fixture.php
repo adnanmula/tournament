@@ -2,6 +2,8 @@
 
 namespace AdnanMula\Tournament\Fixture;
 
+use AdnanMula\Tournament\User;
+use InvalidArgumentException;
 use JsonSerializable;
 
 class Fixture implements JsonSerializable
@@ -13,7 +15,13 @@ class Fixture implements JsonSerializable
         private(set) readonly int $position,
         private(set) readonly \DateTimeImmutable $createdAt,
         private(set) ?\DateTimeImmutable $playedAt,
-    ) {}
+    ) {
+        foreach ($this->players as $player) {
+            if (false === $player instanceof User) {
+                throw new InvalidArgumentException('Players should be an instance of ' . User::class);
+            }
+        }
+    }
 
     public function updatePlayedAt(?\DateTimeImmutable $playedAt): self
     {
@@ -26,7 +34,7 @@ class Fixture implements JsonSerializable
     {
         return [
             'reference' => $this->reference,
-            'players' => $this->players,
+            'players' => array_map(static fn (User $user) => $user->jsonSerialize(), $this->players),
             'type' => $this->type->value,
             'position' => $this->position,
             'createdAt' => $this->createdAt->format('Y-m-d'),

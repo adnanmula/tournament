@@ -8,6 +8,10 @@ use JsonSerializable;
 
 class Tournament implements JsonSerializable
 {
+    /**
+     * @param array<User> $admins
+     * @param array<User> $players
+     */
     public function __construct(
         private(set) string $name,
         private(set) string $description,
@@ -21,14 +25,14 @@ class Tournament implements JsonSerializable
         private(set) Classification $classification,
     ) {}
 
-    public function updateAdmins(string|int ...$admins): static
+    public function updateAdmins(User ...$admins): static
     {
         $this->admins = array_values(array_unique($admins));
 
         return $this;
     }
 
-    public function updatePlayers(string|int ...$players): static
+    public function updatePlayers(User ...$players): static
     {
         $this->players = array_values(array_unique($players));
 

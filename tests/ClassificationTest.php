@@ -4,7 +4,7 @@ namespace AdnanMula\Tournament\Tests;
 
 use AdnanMula\Tournament\Classification\Classification;
 use AdnanMula\Tournament\Classification\Player;
-use AdnanMula\Tournament\Classification\User;
+use AdnanMula\Tournament\User;
 use PHPUnit\Framework\TestCase;
 
 class ClassificationTest extends TestCase

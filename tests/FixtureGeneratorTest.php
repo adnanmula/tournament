@@ -8,6 +8,7 @@ use AdnanMula\Tournament\Fixture\FixturesGenerator;
 use AdnanMula\Tournament\Fixture\FixtureType;
 use AdnanMula\Tournament\Tournament;
 use AdnanMula\Tournament\TournamentType;
+use AdnanMula\Tournament\User;
 use PHPUnit\Framework\TestCase;
 
 class FixtureGeneratorTest extends TestCase
@@ -20,8 +21,13 @@ class FixtureGeneratorTest extends TestCase
             'Test 1',
             '',
             TournamentType::ROUND_ROBIN_2,
-            [1],
-            [1, 2],
+            [
+                new User(1, '1'),
+            ],
+            [
+                new User(1, '1'),
+                new User(2, '2'),
+            ],
             new \DateTimeImmutable(),
             new \DateTimeImmutable(),
             null,
@@ -48,8 +54,15 @@ class FixtureGeneratorTest extends TestCase
             'Test 1',
             '',
             TournamentType::ROUND_ROBIN_2,
-            [1],
-            [1, 2, 3, 4],
+            [
+                new User(1, '1'),
+            ],
+            [
+                new User(1, '1'),
+                new User(2, '2'),
+                new User(3, '3'),
+                new User(4, '4'),
+            ],
             new \DateTimeImmutable(),
             new \DateTimeImmutable(),
             null,
