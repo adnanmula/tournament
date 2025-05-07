@@ -16,6 +16,11 @@ class Classification implements JsonSerializable
         $this->order();
     }
 
+    public function playerWithId(int|string $id): ?Player
+    {
+        return array_find($this->players, static fn (Player $player) => $player->user->id === $id);
+    }
+
     public function winner(): ?Player
     {
         if (false === $this->isFinished) {
@@ -56,7 +61,7 @@ class Classification implements JsonSerializable
         return $this;
     }
 
-    private function order(): void
+    public function order(): void
     {
         $players = $this->players;
 
