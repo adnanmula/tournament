@@ -25,6 +25,13 @@ class Fixtures implements JsonSerializable
             $grouped[$fixture->reference][] = $fixture;
         }
 
+        uasort($grouped, static function (array $a, array $b) {
+            $minA = min(array_map(static fn (Fixture $f) => $f->position, $a));
+            $minB = min(array_map(static fn (Fixture $f) => $f->position, $b));
+
+            return $minA <=> $minB;
+        });
+
         return $grouped;
     }
 
