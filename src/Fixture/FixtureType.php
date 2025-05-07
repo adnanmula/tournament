@@ -10,4 +10,12 @@ enum FixtureType: string
     case BEST_OF_7 = 'BEST_OF_7';
     case GAMES_3 = 'GAMES_3';
     case GAMES_5 = 'GAMES_5';
+
+    public function isBestOf(): bool
+    {
+        return $this === self::BEST_OF_1
+            || $this === self::BEST_OF_3
+            || $this === self::BEST_OF_5
+            || $this === self::BEST_OF_7;
+    }
 }

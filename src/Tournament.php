@@ -25,6 +25,16 @@ class Tournament implements JsonSerializable
         private(set) Classification $classification,
     ) {}
 
+    public function adminIds(): array
+    {
+        return \array_map(static fn (User $u): int|string => $u->id, $this->admins);
+    }
+
+    public function playerIds(): array
+    {
+        return \array_map(static fn (User $u): int|string => $u->id, $this->players);
+    }
+
     public function updateAdmins(User ...$admins): static
     {
         $this->admins = array_values(array_unique($admins));

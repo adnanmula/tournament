@@ -23,6 +23,11 @@ class Fixture implements JsonSerializable
         }
     }
 
+    public function playerIds(): array
+    {
+        return \array_map(static fn (User $u): int|string => $u->id, $this->players);
+    }
+
     public function updatePlayedAt(?\DateTimeImmutable $playedAt): self
     {
         $this->playedAt = $playedAt;

@@ -4,7 +4,7 @@ namespace AdnanMula\Tournament;
 
 use JsonSerializable;
 
-class User implements JsonSerializable
+readonly class User implements JsonSerializable
 {
     public function __construct(
         private(set) string|int $id,
